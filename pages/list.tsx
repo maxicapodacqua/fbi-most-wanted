@@ -1,6 +1,7 @@
 import {NextPage} from "next";
 import useSWR from 'swr';
-import fetcher from "../lib/fetcher";
+import fetcher from "../src/fetcher";
+import {LinearProgress} from "@mui/material";
 
 interface Wanted {
     aliases?: string[];
@@ -14,22 +15,17 @@ interface WantedListResponse {
 const List :NextPage = () => {
 
     const { data, isValidating, error } = useSWR<WantedListResponse>(process.env.NEXT_PUBLIC_API_FBI_URL + 'wanted/v1/list', fetcher);
-    console.log(data?.items.length);
+    // console.log(data?.items.length);
     return (
         <>
+            {isValidating ? <LinearProgress/> : null}
             <h1>List of most wanted from FBI</h1>
-            {isValidating ? <span>Loading...</span> : null}
             {data ?
             <div>
                 <h2>Showing Page {data.page}</h2>
                 <ul>
-                    {data.items.map((item: Wanted) => {
-                        return <li>{item.aliases?.join(', ') ?? 'No Name'}</li>
-                        // if (item.aliases) {
-                        //
-                        //     console.log(item)
-                        // }
-                            // (<li>{item.aliases.join(' ')}</li>)
+                    {data.items.map((item: Wanted, index: number) => {
+                        return <li key={index}>{item.aliases?.join(', ') ?? 'No Name'}</li>
                         }
                     )}
                 </ul>
