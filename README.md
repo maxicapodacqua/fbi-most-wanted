@@ -1,5 +1,10 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# FBI Most Wanted
+This project is an intent of practicing my skill with NextJS and material UI.
+
+This app fetches information from the FBI public API to show the list of most wanted individuals
+
 ## Getting Started
 
 First, run the development server:
