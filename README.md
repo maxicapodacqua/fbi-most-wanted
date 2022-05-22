@@ -3,6 +3,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 # FBI Most Wanted
 This project is an intent of practicing my skill with NextJS and material UI.
 
+https://api.fbi.gov/docs#!/Wanted/get_wanted
+
 This app fetches information from the FBI public API to show the list of most wanted individuals
 
 ## Getting Started
