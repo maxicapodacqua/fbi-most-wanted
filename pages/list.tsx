@@ -37,10 +37,9 @@ const List: NextPage = () => {
                 <div>
                     <h2>Showing Page {data.page}</h2>
                     {data.items.map((item: Wanted, index: number) => {
-                        return <Card>
+                        return <Card key={index}>
                             {item.images ?
                                 <CardMedia
-                                    key={index}
                                     component='img'
                                     height='140'
                                     image={item.images[0]!.thumb}
