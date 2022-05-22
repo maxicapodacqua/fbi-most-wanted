@@ -1,7 +1,9 @@
 import {NextPage} from "next";
 import useSWR from 'swr';
 import fetcher from "../src/fetcher";
-import {Alert, Card, CardMedia, LinearProgress} from "@mui/material";
+import {Alert, Card, CardMedia, ImageList, ImageListItem, ImageListItemBar, LinearProgress, Link} from "@mui/material";
+import Image from "next/image";
+// import Link from "next/link";
 
 interface WantedImage {
     original: string;
@@ -12,6 +14,9 @@ interface WantedImage {
 interface Wanted {
     aliases?: string[];
     images?: WantedImage[];
+    url: string;
+    title: string;
+    description: string;
 }
 
 interface WantedListResponse {
@@ -36,17 +41,30 @@ const List: NextPage = () => {
             {data ?
                 <div>
                     <h2>Showing Page {data.page}</h2>
+                    <ImageList cols={5} gap={8}>
                     {data.items.map((item: Wanted, index: number) => {
-                        return <Card key={index}>
-                            {item.images ?
-                                <CardMedia
-                                    component='img'
-                                    height='140'
-                                    image={item.images[0]!.thumb}
-                                    alt={item.images[0]!.caption ?? ''}
-                                /> : null}
-                        </Card>
+                        return <Link href={item.url}>
+                            <ImageListItem key={index}>
+                                {item.images?.length ?
+                                <Image src={item.images[0].large} width={100} height={200} />
+                                    : null}
+                                <ImageListItemBar
+                                    title={item.title}
+                                    subtitle={item.description}
+                                    />
+                            </ImageListItem>
+                        </Link>
+                        // return <Card key={index} sx={{maxWidth: 345}}>
+                        //     {item.images ?
+                        //         <CardMedia
+                        //             component='img'
+                        //             height='140'
+                        //             image={item.images[0]!.thumb}
+                        //             alt={item.images[0]!.caption ?? ''}
+                        //         /> : null}
+                        // </Card>
                     })}
+                    </ImageList>
 
                 </div>
                 : null}
