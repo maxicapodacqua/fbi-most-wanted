@@ -40,6 +40,7 @@ const List: NextPage = () => {
                         return <Card>
                             {item.images ?
                                 <CardMedia
+                                    key={index}
                                     component='img'
                                     height='140'
                                     image={item.images[0]!.thumb}
@@ -48,12 +49,6 @@ const List: NextPage = () => {
                         </Card>
                     })}
 
-                    {/*<ul>*/}
-                    {/*    {data.items.map((item: Wanted, index: number) => {*/}
-                    {/*            return <li key={index}>{item.aliases?.join(', ') ?? 'No Name'}</li>*/}
-                    {/*        }*/}
-                    {/*    )}*/}
-                    {/*</ul>*/}
                 </div>
                 : null}
         </>
